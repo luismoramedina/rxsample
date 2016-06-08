@@ -13,9 +13,9 @@ public class BlogPostService {
             Thread.sleep(5000);
         } catch (InterruptedException ignored) {
         }
-        BlogPost just = new BlogPost(5);
+        BlogPost blogPost = new BlogPost(5);
         System.out.println("RxSample.getPost after");
-        return just;
+        return blogPost;
     }
 
     public static class BlogPostCommand implements Command {
