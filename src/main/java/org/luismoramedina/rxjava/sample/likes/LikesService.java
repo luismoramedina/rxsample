@@ -9,7 +9,7 @@ public class LikesService {
     public Likes getLikes() {
         System.out.println("RxSample.getLikes before");
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException ignored) {
         }
         Likes likes = new Likes(10);

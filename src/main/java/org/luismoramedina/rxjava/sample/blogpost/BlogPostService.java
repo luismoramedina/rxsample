@@ -1,7 +1,6 @@
 package org.luismoramedina.rxjava.sample.blogpost;
 
 import org.luismoramedina.rxjava.sample.Command;
-import org.luismoramedina.rxjava.sample.blogpost.BlogPost;
 
 /**
  * @author luismoramedina

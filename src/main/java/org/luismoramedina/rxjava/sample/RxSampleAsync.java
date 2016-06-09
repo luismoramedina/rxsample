@@ -5,11 +5,14 @@ import org.luismoramedina.rxjava.sample.blogpost.BlogPostService;
 import org.luismoramedina.rxjava.sample.likes.Likes;
 import org.luismoramedina.rxjava.sample.likes.LikesService;
 import rx.Observable;
-import rx.schedulers.Schedulers;
 
 import java.util.Date;
 
+import static org.luismoramedina.rxjava.util.RxUtils.createAsyncObservable;
+
 /**
+ * Emulates a composite service that calls different services to get a composite response.
+ *
  * @author luismoramedina
  */
 public class RxSampleAsync {
@@ -18,26 +21,27 @@ public class RxSampleAsync {
         try {
             long start = new Date().getTime();
 
-            final PostAndLikes[] mPostAndLikes = new PostAndLikes[1];
-            Observable<Object> postStream = callAsync(new BlogPostService.BlogPostCommand());
-            Observable<Object> likesStream = callAsync(new LikesService.LikesErrorCommand());
+            Observable<BlogPost> postStream = createAsyncObservable(new BlogPostService.BlogPostCommand());
+            Observable<Likes> likesStream = createAsyncObservable(new LikesService.LikesCommand());
 
-            Observable.zip(
+            //Working with errors
+            //Observable<Object> likesStream = createAsyncObservable(new LikesService.LikesErrorCommand());
+
+            PostAndLikes postAndLikes = Observable.zip(
                     postStream,
                     likesStream,
-                    (blogPost, likes) -> new PostAndLikes(((BlogPost) blogPost).id, ((Likes) likes).size))
+                    (blogPost, likes) -> new PostAndLikes(blogPost.id, likes.size))
 
                     //Blocks until every observable is completed
                     .toBlocking()
 
-                    .subscribe(postAndLikes -> {
-                        mPostAndLikes[0] = postAndLikes;
-                        System.out.println("All together: " + postAndLikes);
-                    });
+                    //Get the single item result
+                    .single();
 
-            System.out.println("mPostAndLikes = " + mPostAndLikes[0]);
+            System.out.println("postAndLikes = " + postAndLikes);
 
             System.out.println("-------------" + ((new Date().getTime()) - start));
+
         } catch (Exception e) {
             e.printStackTrace();
             Throwable cause = e.getCause();
@@ -45,25 +49,6 @@ public class RxSampleAsync {
             System.out.println("cause.getMessage() = " + cause.getMessage());
         }
 
-    }
-
-
-    private static Observable<Object> callAsync(Command command) {
-        return Observable.create(subscriber -> {
-
-            Runnable r = () -> {
-                try {
-                    subscriber.onNext(command.execute());
-                } catch (Exception e) {
-                    subscriber.onError(e);
-                } finally {
-                    subscriber.onCompleted();
-                }
-            };
-
-            r.run();
-
-        }).subscribeOn(Schedulers.io());
     }
 
 
