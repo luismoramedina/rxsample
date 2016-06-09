@@ -1,9 +1,9 @@
-package org.luismoramedina.rxjava.sample;
+package org.luismoramedina.rxjava.sample.blog;
 
-import org.luismoramedina.rxjava.sample.blogpost.BlogPost;
-import org.luismoramedina.rxjava.sample.blogpost.BlogPostService;
-import org.luismoramedina.rxjava.sample.likes.Likes;
-import org.luismoramedina.rxjava.sample.likes.LikesService;
+import org.luismoramedina.rxjava.sample.blog.blogpost.BlogPost;
+import org.luismoramedina.rxjava.sample.blog.blogpost.BlogPostService;
+import org.luismoramedina.rxjava.sample.blog.likes.Likes;
+import org.luismoramedina.rxjava.sample.blog.likes.LikesService;
 import rx.Observable;
 
 import java.util.Date;

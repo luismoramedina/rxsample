@@ -1,4 +1,4 @@
-package org.luismoramedina.rxjava.sample.likes;
+package org.luismoramedina.rxjava.sample.blog.likes;
 
 /**
  * @author luismoramedina

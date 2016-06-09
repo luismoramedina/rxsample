@@ -1,6 +1,5 @@
 package org.luismoramedina.rxjava.util;
 
-import org.luismoramedina.rxjava.sample.Command;
 import rx.Observable;
 import rx.schedulers.Schedulers;
 

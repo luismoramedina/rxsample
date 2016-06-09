@@ -1,6 +1,6 @@
-package org.luismoramedina.rxjava.sample.likes;
+package org.luismoramedina.rxjava.sample.blog.likes;
 
-import org.luismoramedina.rxjava.sample.Command;
+import org.luismoramedina.rxjava.util.Command;
 
 /**
  * @author luismoramedina
