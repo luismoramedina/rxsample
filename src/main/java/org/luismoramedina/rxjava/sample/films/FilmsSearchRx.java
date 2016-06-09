@@ -25,7 +25,7 @@ import static org.luismoramedina.rxjava.util.RxUtils.createAsyncObservable;
  */
 public class FilmsSearchRx {
 
-    public static final int DELAY = 1000;
+    private static final int DELAY = 1000;
     private static boolean sync = false;
 
     public static void main(String[] args) throws Throwable{
@@ -64,7 +64,7 @@ public class FilmsSearchRx {
     private static String[] searchFilmReviews(String film) {
         try {
             Thread.sleep(DELAY);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ignored) {
         }
         if (film.startsWith("America")) {
             return new String[]{"Aggresive", "Bad"};
@@ -76,7 +76,7 @@ public class FilmsSearchRx {
     private static String searchFilmData(String o) {
         try {
             Thread.sleep(DELAY);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException ignored) {
         }
         if (o.startsWith("America")) {
             return "AHX";
@@ -86,6 +86,7 @@ public class FilmsSearchRx {
     }
 
     private static String[] searchByTitle(String title) throws InterruptedException {
+        System.out.println("searching... " + title);
         Thread.sleep(DELAY);
         return new String[]{"American history X", "A history of violence"};
     }
