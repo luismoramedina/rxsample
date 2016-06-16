@@ -5,6 +5,8 @@ import org.luismoramedina.rxjava.sample.blog.likes.LikesService;
 import rx.Observable;
 
 /**
+ * Blocking! no async!
+ *
  * @author luismoramedina
  */
 public class RxSample {
