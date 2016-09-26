@@ -27,6 +27,7 @@ public class LikesService {
     public static class LikesErrorCommand implements Command {
         @Override
         public Object execute() {
+            System.out.println("Error on Likes command");
             String s = null;
             s.indexOf(0);
             return null;

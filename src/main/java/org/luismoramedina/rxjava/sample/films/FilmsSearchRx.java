@@ -73,12 +73,12 @@ public class FilmsSearchRx {
         }
     }
 
-    private static String searchFilmData(String o) {
+    private static String searchFilmData(String query) {
         try {
             Thread.sleep(DELAY);
         } catch (InterruptedException ignored) {
         }
-        if (o.startsWith("America")) {
+        if (query.startsWith("America")) {
             return "AHX";
         } else {
             return "AHOV";
